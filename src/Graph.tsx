@@ -41,16 +41,17 @@ class Graph extends Component<IProps, {}> {
       timestamp: 'date',
     };
 
-    if (window.perspective && window.perspective.worker()) {
+    if (window.perspective ) {
       this.table = window.perspective.worker().table(schema);
     }
     if (this.table) {
+      console.log('change table');
       // Load the `table` in the `<perspective-viewer>` DOM reference.
 
       // Add more Perspective configurations here.
       elem.load(this.table);
       elem.setAttribute('view', 'y_line');
-      elem.setAttribute('colum-pivots', '["stock"]');
+      elem.setAttribute('column-pivots', '["stock"]');
       elem.setAttribute('row-pivots', '["timestamp"]');
       elem.setAttribute('aggregates',`
         {"stock": "distinct count",
